@@ -11,7 +11,7 @@ def api_v1() -> dict:
 def api_v2() -> dict:
     return ((requests.get("https://jsonip.com")).json())["ip"]
 
-def get_ip():
+def _get_ip():
     api_version = os.getenv("API_VERSION")
     
     match api_version:
@@ -27,7 +27,7 @@ def get_ip():
     return q
 
 
-@app.get("/")
-def root():
-    return get_ip()
+@app.get("/get_ip")
+def get_ip():
+    return _get_ip()
 
